@@ -14,16 +14,20 @@ interface IFormValues {
 }
 
 type InputFieldProps = {
+  autoComplete?: Path<IFormValues>;
   label: Path<IFormValues>;
   name: Path<IFormValues>;
   register: UseFormRegister<IFormValues>;
-  required: boolean;
+  required?: boolean;
+  type?: Path<IFormValues>;
 };
 
 export default function InputField({
   label,
   register,
   required,
+  autoComplete,
+  type,
 }: InputFieldProps) {
   return (
     <FormControl mt={4}>
@@ -37,6 +41,8 @@ export default function InputField({
         borderColor="black"
         borderRadius="3px"
         focusBorderColor="highlight.standard"
+        autoComplete={autoComplete}
+        type={type}
         {...register(label, { required })}
       />
       <FormErrorMessage>{'error'}</FormErrorMessage>

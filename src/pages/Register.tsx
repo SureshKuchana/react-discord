@@ -1,7 +1,16 @@
-import { Box, Flex, Heading, Image } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  Button,
+  Text,
+  Link,
+} from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import Logo from '../assets/logo.png';
 import InputField from '../components/shared/InputField';
+import { Link as RLink } from 'react-router-dom';
 
 interface IFormValues {
   email: string;
@@ -32,9 +41,43 @@ export default function Register() {
               <InputField
                 label="email"
                 name="email"
+                autoComplete="email"
+                type="email"
                 register={register}
                 required
               />
+              <InputField
+                register={register}
+                label="username"
+                name="username"
+              />
+              <InputField
+                label="password"
+                name="password"
+                autoComplete="password"
+                register={register}
+                type="password"
+                required
+              />
+              <Button
+                background="highlight.standard"
+                color="white"
+                width="full"
+                mt={4}
+                type="submit"
+                isLoading={false}
+                _hover={{ bg: 'highlight.hover' }}
+                _active={{ bg: 'highlight.active' }}
+                _focus={{ boxShadow: 'none' }}
+              >
+                Register
+              </Button>
+              <Text mt="4">
+                Already have an account?{' '}
+                <Link as={RLink} to="/login" textColor="highlight.standard">
+                  Sign In
+                </Link>
+              </Text>
             </form>
           </Box>
         </Box>
